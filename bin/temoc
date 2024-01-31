@@ -34,8 +34,8 @@ function download_executable(string $tag): void {
 }
 
 function download_file(string $url): string {
-    $output_file = 'temp_archive';
-    $fp = fopen (__DIR__ . '/' . $output_file, 'w+');
+    $output_file = __DIR__ . '/' .'temp_archive';
+    $fp = fopen ($output_file, 'w+');
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_TIMEOUT, 600);
     curl_setopt($ch, CURLOPT_FILE, $fp); 
