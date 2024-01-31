@@ -1,0 +1,13 @@
+{
+    "name": "killertux/temoc-phpslim",
+    "description": "Mix of Temoc and PhpSlim",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Clemente",
+            "email": "bruno.canguru@hotmail.com"
+        }
+    ],
+    "require": {},
+    "bin": ["bin/phpslim.phar", "bin/temoc"]
+}
