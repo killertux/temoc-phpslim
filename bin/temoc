@@ -3,14 +3,14 @@
 
 $tag = "0.3.0";
 
-$executable = executable_dir($tag) . 'temoc';
+$executable = executable_dir($tag) . executable();
 if (!file_exists($executable)) {
     download_executable($tag);
 }
 
 $result_code = 0;
 passthru($executable . ' ' . implode(" ", array_slice($argv, 1)), $result_code);
-return $result_code;
+exit($result_code);
 
 function download_executable(string $tag): void {
     switch(PHP_OS_FAMILY) {
@@ -53,13 +53,20 @@ function unzip(string $tag, string $file): void {
     $zip->open($file);
     $zip->extractTo(executable_dir($tag));
     $zip->close();
-    chmod(executable_dir($tag) . 'temoc', 0750);
+    chmod(executable_dir($tag) . executable(), 0750);
 }
 
 function untar(string $tag, string $file): void {
     $phar = new PharData($file);
     $phar->extractTo(executable_dir($tag));
-    chmod(executable_dir($tag) . 'temoc', 0750);
+    chmod(executable_dir($tag) . executable(), 0750);
+}
+
+function executable(): string {
+    return match(PHP_OS_FAMILY) {
+        "Windows" => "temoc.exe",
+        default => "temoc"
+    };
 }
 
 function executable_dir(string $tag): string {
