@@ -8,7 +8,9 @@ if (!file_exists($executable)) {
     download_executable($tag);
 }
 
-passthru($executable . ' ' . implode(" ", array_slice($argv, 1)));
+$result_code = 0;
+passthru($executable . ' ' . implode(" ", array_slice($argv, 1)), $result_code);
+return $result_code;
 
 function download_executable(string $tag): void {
     switch(PHP_OS_FAMILY) {
