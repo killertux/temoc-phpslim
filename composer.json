@@ -9,5 +9,6 @@
         }
     ],
     "require": {},
+    "license": "MIT",
     "bin": ["bin/phpslim.phar", "bin/temoc"]
 }
