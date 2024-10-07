@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-$tag = "0.7.0";
+$tag = "0.8.0";
 
 $executable = executable_dir($tag) . executable();
 if (!file_exists($executable)) {
